@@ -1,2 +1,0 @@
-# App
-Aplicacion lionPrograming
