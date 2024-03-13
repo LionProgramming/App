@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button, Alert } from "react-native";
+import DropObmenu from './DropdownMenu'
 
 export function CreateObservation() {
   const [observationData, setObservationData] = useState({
@@ -30,6 +31,7 @@ export function CreateObservation() {
   };
 
   return (
+    <><DropObmenu/>
     <View style={styles.container}>
       <Text style={styles.title}>Observación</Text>
 
@@ -58,7 +60,7 @@ export function CreateObservation() {
           <Text>{respuesta}</Text>
         </View>
       )}
-    </View>
+    </View></>
   );
 }
 
@@ -66,11 +68,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    alignItems: 'center',
+    padding:20,
+
   },
   title: {
     fontSize: 20,
     marginBottom: 20,
+    marginTop: 70,
+    textAlign:'center',
   },
   input: {
     borderWidth: 1,

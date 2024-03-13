@@ -30,14 +30,14 @@ export const BuscarObservacion = ({ cantidadCuadros = 5 }) => {
 
   return (
     <View style={styles.container1}>
-      <View style={styles.busquedaContainer}>
+      <View style={styles.busquedaContainer}><MenuDesplegable />
         <TextInput
           style={styles.input}
           placeholder="Buscar"
           value={busqueda}
           onChangeText={(text) => setBusqueda(text)}
         />
-        <MenuDesplegable />
+        
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -77,10 +77,11 @@ const styles = StyleSheet.create({
   },
   busquedaContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 70,
+    justifyContent: 'center',
+    alignSelf: 'center',  
+    marginTop: 0,
     padding: 10,
-    width:350,
+    width:405,
     backgroundColor: 'white',
     borderBottomWidth: 2,
     borderBottomColor: '#0077cc',

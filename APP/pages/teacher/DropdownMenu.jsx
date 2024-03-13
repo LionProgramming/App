@@ -1,24 +1,41 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable, StyleSheet, Modal } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const MenuDesplegable = ({ onClose }) => {
+
+const MenuDesplegable = () => {
   const opcionesMenu = [
-    'Salir',
     'Perfil',
+    'Salir',
     'Realizar Observación',
     'Visualización de Observaciones',
   ];
 
   const [menuVisible, setMenuVisible] = useState(false);
   const [opcionSeleccionada, setOpcionSeleccionada] = useState(null);
+  const navigation = useNavigation();
 
   const handleMenuClick = (opcion) => {
     setOpcionSeleccionada(opcion);
 
-    console.log(`Opción seleccionada: ${opcion}`);
-    // Cerrar el menú
+    
+    if (opcion === 'Perfil') {
+      
+      navigation.navigate('PorfilTeacher');
+
+    }else if (opcion === 'Salir') {
+      navigation.navigate('Login');
+
+    } else if (opcion === 'Realizar Observación') {
+      navigation.navigate('CreateObservation');
+
+    } else if (opcion === 'Visualización de Observaciones') {
+      navigation.navigate('SearchObservation');
+    }
+    
+
+   
     setMenuVisible(false);
-    onClose();
   };
 
   return (
@@ -65,17 +82,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    
   },
   menuButton: {
     padding: 10,
-     
-    
   },
   menuButtonText: {
     fontSize: 16,
     color: '#0066cc',
     fontWeight: 'bold',
-
   },
   overlay: {
     flex: 1,
