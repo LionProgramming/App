@@ -10,7 +10,7 @@ import PorfilTeacher from './teacher/PorfilTeacher';
 import CreateObservation from './teacher/CreateObservation';
 import SearchObservation from'./teacher/SearchObservation'
 // VistaEstudiante
-//  import PorfilStudent from './student/PorfilStuden';
+import PorfilStudent from './student/PerfilStudent';
 //  import Horario from './student/Horario';
 
 
@@ -29,8 +29,8 @@ export default function AppNavigator() {
          <Stack.Screen name="CreateObservation" component={CreateObservation} /> 
          <Stack.Screen name="SearchObservation" component={SearchObservation} />  
           {/* estudiante  */}
-         {/* <Stack.Screen name="PorfilStudent" component={PorfilStudent} /> 
-         <Stack.Screen name="Horario" component={Horario} />  */}
+         <Stack.Screen name="PorfilStudent" component={PorfilStudent} /> 
+        
 
       </Stack.Navigator>
     </NavigationContainer>

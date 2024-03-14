@@ -49,10 +49,11 @@ export function Login() {
       console.log('Respuesta de la API:', response.data);
 
   
+        //Guardado en almacenamiento local del userData
       await AsyncStorage.setItem('userData', JSON.stringify(response.data));
 
       if (response.data.response===1){
-        navigation.navigate('PorfilTeacher');
+        navigation.navigate('PorfilStudent');
       }
 
       
