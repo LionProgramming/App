@@ -53,7 +53,7 @@ export function Login() {
       await AsyncStorage.setItem('userData', JSON.stringify(response.data));
 
       if (response.data.response===1){
-        navigation.navigate('PorfilStudent');
+        navigation.navigate('PorfilTeacher');
       }
 
       

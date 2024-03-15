@@ -9,6 +9,7 @@ const MenuDesplegable = () => {
     'Salir',
     'Realizar Observación',
     'Visualización de Observaciones',
+    'Horario'
   ];
 
   const [menuVisible, setMenuVisible] = useState(false);
@@ -31,6 +32,9 @@ const MenuDesplegable = () => {
 
     } else if (opcion === 'Visualización de Observaciones') {
       navigation.navigate('SearchObservation');
+    }
+    else if (opcion === 'Horario'){
+      navigation.navigate('HorarioProfesor')
     }
     
 

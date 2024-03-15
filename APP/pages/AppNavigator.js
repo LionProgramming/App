@@ -8,9 +8,11 @@ import { Login } from './layouts/Login';
 // // profesor
 import PorfilTeacher from './teacher/PorfilTeacher';
 import CreateObservation from './teacher/CreateObservation';
-import SearchObservation from'./teacher/SearchObservation'
+import SearchObservation from'./teacher/SearchObservation';
+import HorarioProfesor from './teacher/HorarioProf.jsx';
 // VistaEstudiante
-import PorfilStudent from './student/PerfilStudent';
+import PorfilStudent from './student/PerfilStudent.jsx';
+import HorarioEstudent from './student/Horario.jsx';
 //  import Horario from './student/Horario';
 
 
@@ -27,9 +29,14 @@ export default function AppNavigator() {
           {/* profesor  */}
           <Stack.Screen name="PorfilTeacher" component={PorfilTeacher} />
          <Stack.Screen name="CreateObservation" component={CreateObservation} /> 
-         <Stack.Screen name="SearchObservation" component={SearchObservation} />  
+         <Stack.Screen name="SearchObservation" component={SearchObservation} /> 
+         <Stack.Screen name="HorarioProfesor" component={HorarioProfesor} />
+         
           {/* estudiante  */}
-         <Stack.Screen name="PorfilStudent" component={PorfilStudent} /> 
+         <Stack.Screen name="PorfilStudent" component={PorfilStudent} />
+         <Stack.Screen name="HorarioEstudent" component={HorarioEstudent} />
+
+  
         
 
       </Stack.Navigator>

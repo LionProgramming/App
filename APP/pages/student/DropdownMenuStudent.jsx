@@ -26,7 +26,7 @@ const MenuDesplegable = () => {
       navigation.navigate('Login');
 
     } else if (opcion === 'Mi Horario') {
-      navigation.navigate('Horario');
+      navigation.navigate('HorarioEstudent');
 
     } 
     
