@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, View, TextInput, Button, StyleSheet, Alert, Image, Text } from 'react-native';
+import { ImageBackground, View, TextInput, Button, StyleSheet, Alert, Image, Text, Modal } from 'react-native';
 import React, { useState } from 'react';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,6 +9,11 @@ export function Login() {
   const [documento, setDocumento] = useState('');
   const [contrasenia, setContrasenia] = useState('');
   const navigation = useNavigation();
+
+  /* MODAL */
+  const [visible, setVisible] = useState(false);
+  const show = () => setVisible(true)
+  const hide = () => setVisible(false)
 
   const image2 = { uri: 'https://image.slidesdocs.com/responsive-images/background/business-simple-gradient-blue-technology-light-blue-powerpoint-background_f6faa583ee__960_540.jpg' };
 
@@ -52,9 +57,17 @@ export function Login() {
         //Guardado en almacenamiento local del userData
       await AsyncStorage.setItem('userData', JSON.stringify(response.data));
 
-      if (response.data.response===1){
-        navigation.navigate('PorfilTeacher');
-      }
+      if (response.data.response===1){        
+        if (response.data.rol === 2) {
+          navigation.navigate('PorfilStudent');
+        } else if (response.data.rol === 3) {
+          navigation.navigate('PorfilTeacher');
+        } else if (response.data.rol === 1) {
+          setVisible(true)
+          console.log('No puede ingresar como usuario con rol 1. Ingrese en la versión web.');
+        } else {
+          console.log('Rol desconocido:', response.data.rol);
+      }}
 
       
       Alert.alert('Éxito', 'Inicio de sesión exitoso');
@@ -70,6 +83,17 @@ export function Login() {
 
   return (
     <ImageBackground source={image2} resizeMode="cover" style={styles.image2}>
+      <Modal
+        visible={visible}
+        animationType='fade'
+        onRequestClose={hide}
+        style={styles.ModalStyle}
+      >
+        <View style={styles.ModalContainer}>
+          <Text style={styles.TextModal}>No puede acceder al sistema como administrador</Text>
+          <Button style={styles.ModalButton} title="Cerrar" onPress={hide}></Button>
+        </View>
+      </Modal>
       <View style={styles.container}>
        {/*  <Image style={styles.imagelogo} source={require('../assets/escudo.png')} /> */}
         <Text style={styles.baseText}>
@@ -149,5 +173,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     top: -170,
     left: 160,
+  },
+  ModalStyle :{
+    backgroundColor: '#DDD',
+    opacity: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  ModalContainer: {
+    width: "90%",
+    height: 150,
+    borderWidth: 2,
+    borderColor: '#000000',
+    padding: "3%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: "5%",
+    marginRight: "5%",
+    marginTop: "20%"
+  },
+  ModalButton: {
+    backgroundColor: '#FF0000'
+  },
+  TextModal: {
+    marginBottom: 20,
   },
 });

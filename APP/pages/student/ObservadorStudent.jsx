@@ -2,22 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, TextInput, StyleSheet } from 'react-native';
 import DropdownMenuS from'./DropdownMenuStudent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 export const ObservationStudent = () => {
   const [observaciones, setObservaciones] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    
     const fetchData = async () => {
       try {
         const datoStudent = await AsyncStorage.getItem('userData');
         const datoFilter = JSON.parse('{' + datoStudent.slice(1, -1) + '}');      
-        const response = await fetch('http://127.0.0.1:8000/api/v1/observaciones/');
-        const data = await response.json();
-        console.log("Data from API:", data);
-        const dataFilter = data.filter(filtro => filtro.usuarioDocumento === datoFilter.documento);
-        console.log("Filtered Data:", dataFilter);
-        setObservaciones(dataFilter);
+        const response = await axios.get('http://127.0.0.1:8000/api/v1/observaciones/');
+        const usuario_documento = datoFilter.documento;
+        const filtro = response.data.filter(observation => observation.usuario_documento.toString().trim() === usuario_documento.toString().trim());
+        setObservaciones(filtro);
         setLoading(false);
       } catch (error) {
         console.error('Error al obtener datos del usuario o realizar la solicitud:', error);
