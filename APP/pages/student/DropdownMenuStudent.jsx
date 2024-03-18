@@ -6,8 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 const MenuDesplegable = () => {
   const opcionesMenu = [
     'Salir',
-    ,'Perfil',
-    'Mi Horario'
+    'Perfil',
+    'Mi Horario',
+    'Observador'
+
   ];
 
   const [menuVisible, setMenuVisible] = useState(false);
@@ -28,7 +30,10 @@ const MenuDesplegable = () => {
     } else if (opcion === 'Mi Horario') {
       navigation.navigate('HorarioEstudent');
 
-    } 
+    } else if (opcion === 'Observador'){
+      navigation.navigate('Observacion')
+    }
+
     
 
    

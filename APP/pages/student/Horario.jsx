@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import DropdownMenuS from'./DropdownMenuStudent';
 
-const IdProf = 10102021
+
 
 export function HorarioEstudent() {
   const [data, setData] = useState();
@@ -11,21 +13,30 @@ export function HorarioEstudent() {
   const [HorarioF, setHorarioF] = useState();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const datoSave = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/v1/users/${IdProf}`);
-        const jsonData = await response.json();
-        setData(jsonData);
-        const cursoEst = jsonData.curso;
-        setCursoEst(cursoEst);
+        const datoStudent = await AsyncStorage.getItem('userData');
+        const datoFilter = JSON.parse('{' + datoStudent.slice(1, -1) + '}');      
+        fetchData(datoFilter.documento);
       } catch (error) {
-        console.error('Error al realizar la solicitud GET:', error);
+        console.error('Error al obtener datos del usuario:', error);
       }
     };
-
-    fetchData();
+    
+    datoSave();
   }, []);
 
+  const fetchData = async (documento) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/v1/users/${documento}`);
+      const jsonData = await response.json();
+      setData(jsonData);
+      const cursoEst = jsonData.curso;
+      setCursoEst(cursoEst);
+    } catch (error) {
+      console.error('Error al realizar la solicitud GET:', error);
+    }
+  };
   console.log(cursoEst)
 
   useEffect(() => {
@@ -60,11 +71,12 @@ export function HorarioEstudent() {
 
   return (
     <View style={styles.container}>
+      <DropdownMenuS/>
       <View style={styles.informacionTable}>
         <View style={styles.titleTable}>
           <Text style={styles.fontTitle}>Curso:</Text>
         </View>
-        <img src={HorarioF} alt="" srcset="" />
+        <img src={HorarioF} alt=""/>
       </View>
     </View>
   );

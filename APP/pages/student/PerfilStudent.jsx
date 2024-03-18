@@ -2,27 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, Image } from 'react-native';
 import axios from 'axios';
 import DropdownMenuS from'./DropdownMenuStudent';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 const PorfilStuden = () => {
-  const [userData, setUserData] = useState(null);
-  const documento = '10270880';
 
-  const fetchUserData = async () => {
+  useEffect(() => {
+    const datoSave = async () => {
+      try {
+        const datoStudent = await AsyncStorage.getItem('userData');
+        const datoFilter = JSON.parse('{' + datoStudent.slice(1, -1) + '}');      
+        fetchUserData(datoFilter.documento);
+      } catch (error) {
+        console.error('Error al obtener datos del usuario:', error);
+      }
+    };
+    
+    datoSave();
+  }, []);
+
+
+  const [userData, setUserData] = useState();
+
+  const fetchUserData = async (documento) => {
     try {
-      
       const userResponse = await axios.get(`http://127.0.0.1:8000/api/v1/users/${documento}`);
-
-
       setUserData(userResponse.data);
     } catch (error) {
       console.error('Error al obtener datos de usuario desde la API:', error.message || 'Error desconocido');
     }
   };
-
-  useEffect(() => {
-    
-    fetchUserData();
-  }, []);
 
   return (
     <View style={styles.container}>

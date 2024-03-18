@@ -13,6 +13,7 @@ import HorarioProfesor from './teacher/HorarioProf.jsx';
 // VistaEstudiante
 import PorfilStudent from './student/PerfilStudent.jsx';
 import HorarioEstudent from './student/Horario.jsx';
+import ObservationStudent from './student/ObservadorStudent.jsx';
 //  import Horario from './student/Horario';
 
 
@@ -35,6 +36,7 @@ export default function AppNavigator() {
           {/* estudiante  */}
          <Stack.Screen name="PorfilStudent" component={PorfilStudent} />
          <Stack.Screen name="HorarioEstudent" component={HorarioEstudent} />
+         <Stack.Screen name="Observacion" component={ObservationStudent} />
 
   
         
