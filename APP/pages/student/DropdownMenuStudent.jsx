@@ -22,7 +22,7 @@ const MenuDesplegable = () => {
     
     if (opcion === 'Perfil') {
       
-      navigation.navigate('PorfilStudent');
+      navigation.navigate('PerfilStudent');
 
     }else if (opcion === 'Salir') {
       navigation.navigate('Login');

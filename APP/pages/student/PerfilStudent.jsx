@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, Button, StyleSheet, Image,ScrollView } from 'react-native';
 import axios from 'axios';
 import DropdownMenuS from'./DropdownMenuStudent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
-const PorfilStuden = () => {
+const PerfilStuden = () => {
 
   useEffect(() => {
     const datoSave = async () => {
@@ -35,7 +35,8 @@ const PorfilStuden = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      
       {userData && (
         <View style={styles.userInfo}>
           <DropdownMenuS/>
@@ -44,20 +45,22 @@ const PorfilStuden = () => {
           <Text style={styles.label}>Fecha de Nacimiento: <Text style={styles.info}>{userData.fechanacimiento}</Text></Text>
           <Text style={styles.label}>Nombre: <Text style={styles.info}>{`${userData.nombre1} ${userData.nombre2}`}</Text></Text>
           <Text style={styles.label}>Apellido: <Text style={styles.info}>{`${userData.apellido1} ${userData.apellido2}`}</Text></Text>
+          <Text style={styles.label}>Curso: <Text style={styles.info}>{userData.nombre_curso}</Text></Text>
           <Text style={styles.label}>Email: <Text style={styles.info}>{userData.email}</Text></Text>
           <Text style={styles.label}>Teléfono Fijo: <Text style={styles.info}>{userData.telefono_fijo}</Text></Text>
           <Text style={styles.label}>Teléfono Celular: <Text style={styles.info}>{userData.telefono_celular}</Text></Text>
           <Text style={styles.label}>Estado: <Text style={styles.info}>{userData.estado === 1 ? 'activo' : 'inactivo'}</Text></Text>
         </View>
       )}
-    </View>
+      
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+   
     padding: 20,
   },
   profileImage: {
@@ -86,4 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PorfilStuden;
+export default PerfilStuden;

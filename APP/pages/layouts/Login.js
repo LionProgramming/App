@@ -59,9 +59,9 @@ export function Login() {
 
       if (response.data.response===1){        
         if (response.data.rol === 2) {
-          navigation.navigate('PorfilStudent');
+          navigation.navigate('PerfilStudent');
         } else if (response.data.rol === 3) {
-          navigation.navigate('PorfilTeacher');
+          navigation.navigate('PerfilTeacher');
         } else if (response.data.rol === 1) {
           setVisible(true)
           console.log('No puede ingresar como usuario con rol 1. Ingrese en la versión web.');
