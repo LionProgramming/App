@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, Button, StyleSheet, Image,ScrollView } from 'react-native';
 import axios from 'axios';
 import DropdownMenuS from'./DropdownMenuStudent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -50,6 +50,8 @@ const PorfilStuden = () => {
         <Text style={styles.label}>Teléfono Fijo: <Text style={styles.info}>{userData.telefono_fijo}</Text></Text>
         <Text style={styles.label}>Teléfono Celular: <Text style={styles.info}>{userData.telefono_celular}</Text></Text>
         <Text style={styles.label}>Estado: <Text style={styles.info}>{userData.estado === 1 ? 'activo' : 'inactivo'}</Text></Text>
+        <View style={{ height: 20 }}>
+        </View>
       </View>
     )}
     
@@ -60,8 +62,10 @@ const PorfilStuden = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     padding: 20,
+    
+    
+    
   },
   profileImage: {
     width: 200,
@@ -76,11 +80,12 @@ const styles = StyleSheet.create({
   },
   userInfo: {
     width: '100%',
+    
   },
   label: {
     color: '#004080',
     fontSize: 18,
-    marginBottom: 15,
+    marginBottom: 13,
   },
   info: {
     color: '#004080',
@@ -88,5 +93,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 });
+
 
 export default PorfilStuden;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
 import axios from 'axios';
 import DropdownMenu from'./DropdownMenu';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -39,13 +39,13 @@ const PerfilTeacher = () => {
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <ScrollView ScrollView contentContainerStyle={styles.scrollContainer}>
     <DropdownMenu/>
     <View style={styles.container}>
       {userData && (
         <View style={styles.userInfo}>
           
-          <Image source={{ uri: userData.urlfoto }} style={styles.profileImage} />
+          <Image source={{ uri: (userData.urlfoto? userData.urlfoto: "")  }} style={styles.profileImage} />
           <Text style={styles.label}>Documento: <Text style={styles.info}>{userData.documento}</Text></Text>
           <Text style={styles.label}>Fecha de Nacimiento: <Text style={styles.info}>{userData.fechanacimiento}</Text></Text>
           <Text style={styles.label}>Nombre: <Text style={styles.info}>{`${userData.nombre1} ${userData.nombre2}`}</Text></Text>
@@ -62,11 +62,15 @@ const PerfilTeacher = () => {
 };
 
 const styles = StyleSheet.create({
+  scrollContainer:{
+    flexGrow: 1,
+    backgroundColor: "#fff",
+  },
   container: {
     flex: 1,
     alignItems: 'center',
     padding: 20,
-    backgroundColor: "#fff",
+   
   },
   profileImage: {
     width: 200,
