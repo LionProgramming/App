@@ -35,22 +35,25 @@ const PorfilStuden = () => {
   };
 
   return (
-    <View style={styles.container}>
-      {userData && (
-        <View style={styles.userInfo}>
-          <DropdownMenuS/>
-          <Image source={{ uri: userData.urlfoto }} style={styles.profileImage} />
-          <Text style={styles.label}>Documento: <Text style={styles.info}>{userData.documento}</Text></Text>
-          <Text style={styles.label}>Fecha de Nacimiento: <Text style={styles.info}>{userData.fechanacimiento}</Text></Text>
-          <Text style={styles.label}>Nombre: <Text style={styles.info}>{`${userData.nombre1} ${userData.nombre2}`}</Text></Text>
-          <Text style={styles.label}>Apellido: <Text style={styles.info}>{`${userData.apellido1} ${userData.apellido2}`}</Text></Text>
-          <Text style={styles.label}>Email: <Text style={styles.info}>{userData.email}</Text></Text>
-          <Text style={styles.label}>Teléfono Fijo: <Text style={styles.info}>{userData.telefono_fijo}</Text></Text>
-          <Text style={styles.label}>Teléfono Celular: <Text style={styles.info}>{userData.telefono_celular}</Text></Text>
-          <Text style={styles.label}>Estado: <Text style={styles.info}>{userData.estado === 1 ? 'activo' : 'inactivo'}</Text></Text>
-        </View>
-      )}
-    </View>
+    <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
+      
+    {userData && (
+      <View style={styles.userInfo}>
+        <DropdownMenuS/>
+        <Image source={{ uri: userData.urlfoto }} style={styles.profileImage} />
+        <Text style={styles.label}>Documento: <Text style={styles.info}>{userData.documento}</Text></Text>
+        <Text style={styles.label}>Fecha de Nacimiento: <Text style={styles.info}>{userData.fechanacimiento}</Text></Text>
+        <Text style={styles.label}>Nombre: <Text style={styles.info}>{`${userData.nombre1} ${userData.nombre2}`}</Text></Text>
+        <Text style={styles.label}>Apellido: <Text style={styles.info}>{`${userData.apellido1} ${userData.apellido2}`}</Text></Text>
+        <Text style={styles.label}>Curso: <Text style={styles.info}>{userData.nombre_curso}</Text></Text>
+        <Text style={styles.label}>Email: <Text style={styles.info}>{userData.email}</Text></Text>
+        <Text style={styles.label}>Teléfono Fijo: <Text style={styles.info}>{userData.telefono_fijo}</Text></Text>
+        <Text style={styles.label}>Teléfono Celular: <Text style={styles.info}>{userData.telefono_celular}</Text></Text>
+        <Text style={styles.label}>Estado: <Text style={styles.info}>{userData.estado === 1 ? 'activo' : 'inactivo'}</Text></Text>
+      </View>
+    )}
+    
+  </ScrollView>
   );
 };
 

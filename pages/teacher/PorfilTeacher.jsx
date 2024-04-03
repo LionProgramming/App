@@ -39,7 +39,8 @@ const PerfilTeacher = () => {
   }, []);
 
   return (
-    <><DropdownMenu/>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <DropdownMenu/>
     <View style={styles.container}>
       {userData && (
         <View style={styles.userInfo}>
@@ -55,7 +56,8 @@ const PerfilTeacher = () => {
           <Text style={styles.label}>Estado: <Text style={styles.info}>{userData.estado === 1 ? 'activo' : 'inactivo'}</Text></Text>
         </View>
       )}
-    </View></>
+    </View>
+    </ScrollView>
   );
 };
 
