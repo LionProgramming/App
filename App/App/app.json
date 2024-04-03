@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Observador digital",
+    "slug": "APP",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/iconoApp.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/iconoAppAdaptative.png",
+        "backgroundColor": "#080C34"
+      },
+      "package": "com.eidersro.APP"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9310461f-aa0f-47aa-b623-5ae1b44e2665"
+      }
+    }
+  }
+}
