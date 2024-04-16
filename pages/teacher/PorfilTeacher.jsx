@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
 import axios from 'axios';
-import DropdownMenuS from'./DropdownMenuStudent';
+import DropdownMenu from'./DropdownMenu';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-
-const PorfilStuden = () => {
-
+const PerfilTeacher = () => {
   useEffect(() => {
     const datoSave = async () => {
       try {
@@ -22,24 +19,33 @@ const PorfilStuden = () => {
     datoSave();
   }, []);
 
-
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState(null);
 
   const fetchUserData = async (documento) => {
     try {
+      
       const userResponse = await axios.get(`https://observadorlion.azurewebsites.net/api/v1/users/${documento}`);
+
+
       setUserData(userResponse.data);
     } catch (error) {
       console.error('Error al obtener datos de usuario desde la API:', error.message || 'Error desconocido');
     }
   };
 
+  useEffect(() => {
+    
+    fetchUserData();
+  }, []);
+
   return (
+    <ScrollView ScrollView contentContainerStyle={styles.scrollContainer}>
+    <DropdownMenu/>
     <View style={styles.container}>
       {userData && (
         <View style={styles.userInfo}>
-          <DropdownMenuS/>
-          <Image source={{ uri: userData.urlfoto }} style={styles.profileImage} />
+          
+          <Image source={{ uri: (userData.urlfoto? userData.urlfoto: "")  }} style={styles.profileImage} />
           <Text style={styles.label}>Documento: <Text style={styles.info}>{userData.documento}</Text></Text>
           <Text style={styles.label}>Fecha de Nacimiento: <Text style={styles.info}>{userData.fechanacimiento}</Text></Text>
           <Text style={styles.label}>Nombre: <Text style={styles.info}>{`${userData.nombre1} ${userData.nombre2}`}</Text></Text>
@@ -51,14 +57,20 @@ const PorfilStuden = () => {
         </View>
       )}
     </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollContainer:{
+    flexGrow: 1,
+    backgroundColor: "#fff",
+  },
   container: {
     flex: 1,
     alignItems: 'center',
     padding: 20,
+   
   },
   profileImage: {
     width: 200,
@@ -86,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PorfilStuden;
+export default PerfilTeacher;

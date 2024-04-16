@@ -83,7 +83,7 @@ const MenuDesplegable = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
+    
     
   },
   menuButton: {
